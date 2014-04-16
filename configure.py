@@ -263,7 +263,7 @@ elif options.use_xcode:
 elif flavor == 'win':
     gyp_args += ['-f', 'msvs', '-G', 'msvs_version=auto']
 else:
-    gyp_args += ['f', 'make-' + flavor]
+    gyp_args += ['-f', 'make-' + flavor]
 
 gyp_args += args 
 
