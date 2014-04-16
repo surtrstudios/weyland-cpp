@@ -13,7 +13,10 @@
                 'example/simple.js',
             ],
 
-			'dependencies': [ './deps/v8/tools/gyp/v8.gyp:v8' ],
+			'dependencies': [ 
+                './deps/v8/tools/gyp/v8.gyp:v8',
+                './deps/surtrlog/surtrlog.gyp:surtrlog'
+            ],
 		},
 	],
 }

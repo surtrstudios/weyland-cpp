@@ -7,3 +7,6 @@
 [submodule "tools/ninja"]
 	path = tools/ninja
 	url = https://github.com/martine/ninja.git
+[submodule "deps/surtrlog"]
+	path = deps/surtrlog
+	url = https://github.com/smkell/surtrlog

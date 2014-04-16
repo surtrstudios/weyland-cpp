@@ -1,5 +1,6 @@
 #include <iostream>
 #include <v8.h>
+#include "surtrlog/surtrlog.h"
 
 using namespace v8;
 
@@ -112,6 +113,8 @@ void CreateFunctionsForJS(Handle<v8::Object> global) {
 }
 
 int main(int argc, char* argv[]) {
+    std::cout << "Using surtrlog version " << surtrlog::Version << std::endl;
+
     // Get the default Isolate created at startup.	
     Isolate* isolate = Isolate::GetCurrent();
 
