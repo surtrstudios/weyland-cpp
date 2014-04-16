@@ -10,3 +10,6 @@
 [submodule "deps/surtrlog"]
 	path = deps/surtrlog
 	url = https://github.com/smkell/surtrlog
+[submodule "tools/gtest"]
+	path = tools/gtest
+	url = https://github.com/smkell/gtest.git

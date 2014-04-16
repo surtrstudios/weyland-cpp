@@ -197,6 +197,9 @@ def configure_icu(o):
     if have_icu_path:
         o['variables']['icu_gyp_path'] = options.with_icu_path
 
+def configure_gtest(o):
+    o['variables']['gtest_dir'] = os.path.join(root_dir, "tools", "gtest")
+
 # determine the "flavor" (operating system) we're building for,
 # leveraging gyp's GetFlavor function
 flavor_params = {}
@@ -215,6 +218,7 @@ output = {
 configure_weyland(output)
 configure_v8(output)
 configure_icu(output)
+configure_gtest(output)
 
 # variables should be a root level element,
 # move everything else to target_defaults
