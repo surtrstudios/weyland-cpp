@@ -4,6 +4,6 @@
 [submodule "tools/gyp"]
 	path = tools/gyp
 	url = https://chromium.googlesource.com/external/gyp.git
-[submodule "tools\\ninja"]
-	path = tools\\ninja
+[submodule "tools/ninja"]
+	path = tools/ninja
 	url = https://github.com/martine/ninja.git
