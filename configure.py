@@ -141,7 +141,7 @@ def host_arch_win():
 
     return matchup.get(arch, 'ia32')
 
-def host_arch_cc(o):
+def host_arch_cc():
     """Host architecture check using the CC command."""
 
     k = cc_macros()
