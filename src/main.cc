@@ -74,8 +74,7 @@ void Add(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
 v8::Handle<String> ReadFile(const char* name) {
     // Open the file 
-    FILE* file;
-    fopen_s(&file, name, "rb");
+    FILE* file = fopen(name, "rb");
 
     // If there is no file, return an empty string.
     if (file == NULL) return v8::Handle<v8::String>();
