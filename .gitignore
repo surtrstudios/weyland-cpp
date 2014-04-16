@@ -1,0 +1,11 @@
+config.gypi
+*.mk
+out
+*.sln
+*.vcxproj
+Debug
+Release
+*.opensdf
+*.sdf
+*.suo
+*.vcxproj.filters

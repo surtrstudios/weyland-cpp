@@ -1,0 +1,9 @@
+[submodule "deps/v8"]
+	path = deps/v8
+	url = https://github.com/v8/v8
+[submodule "tools/gyp"]
+	path = tools/gyp
+	url = https://chromium.googlesource.com/external/gyp.git
+[submodule "tools\\ninja"]
+	path = tools\\ninja
+	url = https://github.com/martine/ninja.git
