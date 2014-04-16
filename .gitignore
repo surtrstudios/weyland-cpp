@@ -9,3 +9,4 @@ Release
 *.sdf
 *.suo
 *.vcxproj.filters
+*.user
