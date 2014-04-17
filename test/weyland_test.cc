@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
+#include "weyland/version.h"
 
-TEST(AssertTest, AlwaysFail) {
-    EXPECT_EQ(2, 2);
+TEST(WeylandTests, HasCorrectVersion) {
+    EXPECT_EQ("0.1.0", weyland::Version);
 }
