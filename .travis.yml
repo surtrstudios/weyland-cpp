@@ -3,7 +3,10 @@ language: cpp
 install:
     - git submodule init
     - git submodule update
-    - echo 2 | sudo update-alternatives --config gcc
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    - sudo apt-get update
+    - sudo apt-get install gcc-4.8
+    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
 
 script:
     - ./configure.py
