@@ -3,6 +3,7 @@ language: cpp
 install:
     - git submodule init
     - git submodule update
+    - echo 2 | sudo update-alternatives --config gcc
 
 script:
     - ./configure.py
