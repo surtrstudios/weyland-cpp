@@ -7,6 +7,7 @@ install:
     - sudo apt-get update -y
     - sudo apt-get install -y gcc-4.8
     - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
+    - echo 2 | sudo update-alternatives --config gcc
 
 script:
     - ./configure.py
