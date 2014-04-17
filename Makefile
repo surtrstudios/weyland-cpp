@@ -1,6 +1,6 @@
 all: debug release check 
 
-debug: out/Makfile
+debug: out/Makefile
 	$(MAKE) -C out BUILDTYPE=Debug
 
 release: out/Makefile 

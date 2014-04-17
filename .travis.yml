@@ -6,4 +6,4 @@ install:
 
 script:
     - ./configure.py
-    - make debug release check
+    - make all
