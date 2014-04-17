@@ -1,0 +1,9 @@
+language: cpp
+
+install:
+    - git submodule init
+    - git submodule update
+
+script:
+    - ./configure
+    - make debug release check
