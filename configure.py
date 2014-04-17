@@ -261,7 +261,7 @@ if options.use_ninja:
 elif options.use_xcode:
     gyp_args += ['-f', 'xcode']
 elif flavor == 'win':
-    gyp_args += ['-f', 'msvs', '-G', 'msvs_version=auto']
+    gyp_args += ['-f', 'msvs', '-G', 'msvs_version=2012']
 else:
     gyp_args += ['-f', 'make-' + flavor]
 
