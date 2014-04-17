@@ -23,7 +23,7 @@ void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
         v8::String::Utf8Value str(args[i]);
         std::cout << *str;
     }
-    printf("\n", NULL);
+    std::cout << std::endl;
 }
 
 /*****************************************************************************/
@@ -36,6 +36,7 @@ void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
     \code
     repeat('I\'m repeating! ', 3);
     \endcode
+*/
 /*****************************************************************************/
 void Repeat(const v8::FunctionCallbackInfo<v8::Value>& args) {
     std::string myStr;
