@@ -5,5 +5,5 @@ install:
     - git submodule update
 
 script:
-    - ./configure
+    - ./configure.py
     - make debug release check
