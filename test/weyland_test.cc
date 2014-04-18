@@ -6,7 +6,7 @@ TEST(WeylandTests, HasCorrectVersion) {
     EXPECT_EQ("0.1.0", weyland::Version);
 }
 
-TEST(PackageTests, CtroInitializesValues) {
+TEST(PackageTests, CtorInitializesValues) {
 	weyland::Package pkg;
 	weyland::Package pkg2("test");
 	weyland::Package pkg3("test", "0.1.0");

@@ -55,3 +55,5 @@ if __name__ == '__main__':
 	args.append('-Dlibrary=static_library')
 	gyp_args = list(args)
 	run_gyp(gyp_args)
+
+	run_gyp(['--depth=' + weyland_root, '-I', 'common.gypi', '-I', 'config.gypi', '-f', 'eclipse'])

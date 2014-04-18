@@ -24,7 +24,6 @@
             'type': '<(library)',
 
             'sources': [
-                'src/base/base.cc',
                 'src/base/package.cc',
                 'include/weyland/version.h',
                 'include/weyland/package.h',
