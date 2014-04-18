@@ -1,3 +1,9 @@
+/******************************************************************************/
+/*!
+ * @file	main.cc
+ * @brief	Defines the main entry point for the Weyland application.
+ */
+/******************************************************************************/
 #include <iostream>
 #include <v8.h>
 #include "surtrlog/surtrlog.h"
@@ -6,15 +12,15 @@ using namespace v8;
 
 /*****************************************************************************/
 /*!
-    \brief  JS callback to print a string.
+    @brief  JS callback to print a string.
 
     Javascript prototype print(value)
 
     Example:
-    \code
+    @code
     print('Hello world!');
     print(123);
-    \endcode
+    @endcode
 */
 /*****************************************************************************/
 void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
@@ -26,59 +32,17 @@ void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
     std::cout << std::endl;
 }
 
-/*****************************************************************************/
+/******************************************************************************/
 /*!
-    \brief  JS callback to repeat a string. 
-
-    Javascript prototype: repeat(string, number)
-
-    Example:
-    \code
-    repeat('I\'m repeating! ', 3);
-    \endcode
-*/
-/*****************************************************************************/
-void Repeat(const v8::FunctionCallbackInfo<v8::Value>& args) {
-    std::string myStr;
-    int count = args[1]->Int32Value();
-
-    for (int i = 0; i < count; i++) {
-        v8::HandleScope handle_scope(args.GetIsolate());
-        v8::String::Utf8Value str(args[0]);
-        myStr += *(str);
-    }
-
-    std::cout << myStr.c_str() << std::endl;
-}
-
-/*****************************************************************************/
-/*!
-    \brief  JS callback to add numbers. 
-
-    Javascript prototype: myadd(number, ...)
-
-    Example:
-    \code
-    myadd(1, 2, 3);
-    myadd(4, 5, 6, 7);
-    \endcode
-*/
-/*****************************************************************************/
-void Add(const v8::FunctionCallbackInfo<v8::Value>& args) {
-    int myVal = 0;
-    for (int i =0; i < args.Length(); i++) {
-        v8::HandleScope handle_scope(args.GetIsolate());
-        myVal += args[1]->Int32Value();
-    }
-    args.GetReturnValue().Set(v8::Number::New(args.GetIsolate(), myVal));
-}
-
-v8::Handle<String> ReadFile(const char* name) {
+ * @brief	Reads a file into a string.
+ */
+/******************************************************************************/
+std::string ReadFile(const char* name) {
     // Open the file 
     FILE* file = fopen(name, "rb");
 
     // If there is no file, return an empty string.
-    if (file == NULL) return v8::Handle<v8::String>();
+    if (file == NULL) return std::string("");
 
     // Set the pointer to the end of the file
     fseek(file, 0, SEEK_END);
@@ -100,7 +64,7 @@ v8::Handle<String> ReadFile(const char* name) {
     // Close the file 
     fclose(file);
 
-    v8::Handle<v8::String> result = v8::String::NewFromUtf8(Isolate::GetCurrent(), chars, v8::String::kNormalString, size);
+    std::string result(chars);
     delete[] chars;
     return result;
 }
@@ -108,20 +72,17 @@ v8::Handle<String> ReadFile(const char* name) {
 void CreateFunctionsForJS(Handle<v8::Object> global) {
     Isolate *isolate = Isolate::GetCurrent();
     global->Set(v8::String::NewFromUtf8(isolate, "print"), v8::FunctionTemplate::New(isolate, Print)->GetFunction());
-    global->Set(v8::String::NewFromUtf8(isolate, "repeat"), v8::FunctionTemplate::New(isolate, Repeat)->GetFunction());
-    global->Set(v8::String::NewFromUtf8(isolate, "myadd"), v8::FunctionTemplate::New(isolate, Add)->GetFunction());
 }
 
 int main(int argc, char* argv[]) {
+	surtrlog::Logger logger;
+
     // Get the default Isolate created at startup.	
     Isolate* isolate = Isolate::GetCurrent();
 
     // Create a stack-allocated handle scope.
     HandleScope handle_scope(isolate);
     
-    // Create the global object template 
-    Handle<ObjectTemplate> global_template = ObjectTemplate::New();
-
     // Create a new context 
     Local<Context> context = Context::New(isolate);
 
@@ -138,25 +99,26 @@ int main(int argc, char* argv[]) {
     std::cout << "" << std::endl;
     std::cin.get();
 
-    v8::Handle<v8::String> source = ReadFile(file.c_str());
-    if (source.IsEmpty())
+    std::string source = ReadFile(file.c_str());
+    if (source.empty())
     {
-        std::cout << "Error reading file" << std::endl;
+    	logger.Log<surtrlog::Error>() << "Error reading file";
         std::cout << "Press enter to quit" << std::endl;
         std::cin.get();
         return 0;
     }
 
     // Compile 
-    v8::Handle<v8::Script> script = v8::Script::Compile(source);
+    v8::Handle<v8::Script> script = v8::Script::Compile(
+    		String::NewFromUtf8(isolate, source.c_str()));
 
     v8::Handle<v8::Value> result;
     for(int i =0; i < n; i++) {
         result = script->Run();
         v8::String::Utf8Value utf8(result);
-        std::cout << "Script result: " << *utf8 << std::endl;
+        logger.Log<surtrlog::Info>() << "Script result: " << *utf8 << "\n";
     }
-    std::cout << "Test completed. Press enty to exit the program.\n";
+    std::cout << "Test completed. Press enter to exit the program.\n";
     std::cin.get();
 
     return 0;
