@@ -10,3 +10,5 @@ Release
 *.suo
 *.vcxproj.filters
 *.user
+.cproject
+.project
