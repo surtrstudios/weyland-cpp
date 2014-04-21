@@ -13,6 +13,7 @@
 
 /*** Includes *****************************************************************/
 #include <string>
+#include <vector>
 
 namespace weyland {
 
@@ -31,12 +32,14 @@ namespace weyland {
 		virtual ~Package();
 
 		// Mutators and accessors
-		inline std::string name() const		{ return mName; }
-		inline std::string version() const 	{ return mVersion; }
+		inline std::string name() const			{ return mName; }
+		inline std::string version() const 		{ return mVersion; }
+		inline std::vector<std::string> targets() const 	{ return mTargets; }
 
 	private:
 		std::string mName;
 		std::string mVersion;
+		std::vector<std::string> mTargets;
 	};
 }		/* namespace weyland */
 #endif 	/* WEYLAND_PACKAGE_H_ */

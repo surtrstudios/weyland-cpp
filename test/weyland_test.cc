@@ -3,7 +3,7 @@
 #include "weyland/package.h"
 
 TEST(WeylandTests, HasCorrectVersion) {
-    EXPECT_EQ("0.1.0", weyland::Version);
+	EXPECT_EQ("0.1.0", weyland::Version);
 }
 
 TEST(PackageTests, CtorInitializesValues) {
@@ -13,6 +13,7 @@ TEST(PackageTests, CtorInitializesValues) {
 
 	EXPECT_EQ("",    pkg.name());
 	EXPECT_EQ("dev", pkg.version());
+	EXPECT_EQ(0, 	 pkg.targets().size());
 
 	EXPECT_EQ("test", pkg2.name());
 	EXPECT_EQ("dev",  pkg2.version());

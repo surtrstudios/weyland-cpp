@@ -59,7 +59,7 @@
                 },
             },
             'Release': {
-                'cflags': [ '-O3', '-ffunction-sections', '-fdata-sections' ],
+                'cflags': [ '-O3', '-ffunction-sections', '-fdata-sections', '-std=c++11' ],
                 'conditions': [
                     ['target_arch=="x64"', {
                         'msvs_configuration_platform': 'x64',

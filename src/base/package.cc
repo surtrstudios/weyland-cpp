@@ -18,7 +18,8 @@
 /******************************************************************************/
 weyland::Package::Package()
 	: mName("")
-	, mVersion("dev") {
+	, mVersion("dev") 
+	, mTargets() {
 }
 
 /******************************************************************************/
@@ -30,7 +31,8 @@ weyland::Package::Package()
 /******************************************************************************/
 weyland::Package::Package(std::string name)
 	: mName(name)
-	, mVersion("dev") {
+	, mVersion("dev")
+	, mTargets()  {
 }
 
 /******************************************************************************/
@@ -43,7 +45,8 @@ weyland::Package::Package(std::string name)
 /******************************************************************************/
 weyland::Package::Package(std::string name, std::string version)
 	: mName(name)
-	, mVersion(version) {
+	, mVersion(version)
+	, mTargets()  {
 }
 
 /******************************************************************************/

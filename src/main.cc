@@ -7,6 +7,7 @@
 #include <iostream>
 #include <v8.h>
 #include "surtrlog/surtrlog.h"
+#include "weyland/version.h"
 
 using namespace v8;
 
@@ -76,6 +77,7 @@ void CreateFunctionsForJS(Handle<v8::Object> global) {
 
 int main(int argc, char* argv[]) {
 	surtrlog::Logger logger;
+	logger.Log<surtrlog::Info>() << "Weyland version " << weyland::Version << surtrlog::endl;
 
     // Get the default Isolate created at startup.	
     Isolate* isolate = Isolate::GetCurrent();
