@@ -1,13 +1,15 @@
 all: debug release check 
 
+NPROC = $(shell nproc)
+
 debug: out/Makefile
-	$(MAKE) -C out BUILDTYPE=Debug
+	$(MAKE) -C out BUILDTYPE=Debug -j $(NPROC)
 
 release: out/Makefile 
-	$(MAKE) -C out BUILDTYPE=Release 
+	$(MAKE) -C out BUILDTYPE=Release -j $(NPROC)
 
 check: out/Makefile
-	$(MAKE) -C out weyland_tests surtrlog_tests BUILDTYPE=Debug 
+	$(MAKE) -C out weyland_tests surtrlog_tests BUILDTYPE=Debug -j $(NPROC) 
 	out/Debug/weyland_tests
 	out/Debug/surtrlog_tests
 
