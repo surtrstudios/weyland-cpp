@@ -32,8 +32,8 @@ namespace weyland {
 		virtual ~Package();
 
 		// Mutators and accessors
-		inline std::string name() const			{ return mName; }
-		inline std::string version() const 		{ return mVersion; }
+		inline std::string name() const						{ return mName; }
+		inline std::string version() const 					{ return mVersion; }
 		inline std::vector<std::string> targets() const 	{ return mTargets; }
 
 	private:
